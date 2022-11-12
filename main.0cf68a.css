@@ -1617,7 +1617,8 @@ pre .css~* .id, pre .id {
     margin: 0 30px;
     padding-right: 60px;
     border-bottom: 1px solid #eee;
-    background: #fff
+    /* background: #fff */
+    background: rgba(255,255,255,.5);
 }
 
 .archives-wrap:first-child {
@@ -1668,17 +1669,18 @@ pre .css~* .id, pre .id {
 }
 
 .archives .archive-article-title {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     /*color: #333;*/
     /*transition: color .3s*/
     background: transparent;
     text-decoration: none;
-    color: #af9;
+    transition:color .3s
+    /* color: #af9; */
 }
 
 .archives .archive-article-title:hover {
-    color: #657b83
+    color: #728365
 }
 
 .archives .archive-article-title span {
@@ -2089,7 +2091,8 @@ pre .css~* .id, pre .id {
 }
 
 .article-meta time {
-    color: #aaa
+    /* color: #aaa */
+    color: #2f2d2a;
 }
 
 .article-meta time .icon-clock {
@@ -4094,3 +4097,11 @@ a.pswp__share--download:hover {
     color: #ccc;
     text-decoration: underline
 }
+
+/*版权声明的样式*/
+.declare {
+    background-color: #eaeaea;
+    margin-top: 2em;
+    border-left: 3px solid #ff1700;
+    padding: .5em 1em;
+    }
