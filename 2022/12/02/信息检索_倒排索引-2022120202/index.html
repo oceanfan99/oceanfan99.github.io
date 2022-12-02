@@ -6,22 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>数据库_2022111511 | ocean小站</title>
+  <title>信息检索_2022120202 | ocean小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to database11数据库知识11数据库 mysql中文问题 三层因素1234567891011121314151617181920212223mysql中文问题 三层因素1 因素: msyql自身的设计 (6处中文)实验1:			mysql&gt; 			mysql&gt; show variables like &amp;#x27;character%&amp;#x27;;			+---">
+  <meta name="description" content="信息检索——简单易懂的倒排索引（原理+例子）倒排索引正向索引和反向索引先介绍一下正向索引: 当用户发起查询时（假设查询为一个关键词），搜索引擎会扫描索引库中的所有文档，找出所有包含关键词的文档，这样依次从文档中去查找是否含有关键词的方法叫做正向索引。互联网上存在的网页（或称文档）不计其数，这样遍历的索引结构效率低下，无法满足用户需求。正向索引结构如下:文档1的ID→单词1的信息；单词2的信息；单词">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库_2022111511">
-<meta property="og:url" content="http://example.com/2022/11/15/%E6%95%B0%E6%8D%AE%E5%BA%93-2022111511/index.html">
+<meta property="og:title" content="信息检索_2022120202">
+<meta property="og:url" content="http://example.com/2022/12/02/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2_%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95-2022120202/index.html">
 <meta property="og:site_name" content="ocean小站">
-<meta property="og:description" content="Welcome to database11数据库知识11数据库 mysql中文问题 三层因素1234567891011121314151617181920212223mysql中文问题 三层因素1 因素: msyql自身的设计 (6处中文)实验1:			mysql&gt; 			mysql&gt; show variables like &amp;#x27;character%&amp;#x27;;			+---">
+<meta property="og:description" content="信息检索——简单易懂的倒排索引（原理+例子）倒排索引正向索引和反向索引先介绍一下正向索引: 当用户发起查询时（假设查询为一个关键词），搜索引擎会扫描索引库中的所有文档，找出所有包含关键词的文档，这样依次从文档中去查找是否含有关键词的方法叫做正向索引。互联网上存在的网页（或称文档）不计其数，这样遍历的索引结构效率低下，无法满足用户需求。正向索引结构如下:文档1的ID→单词1的信息；单词2的信息；单词">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/utf8.jpg">
-<meta property="article:published_time" content="2022-11-15T01:04:45.000Z">
-<meta property="article:modified_time" content="2022-11-15T07:33:09.969Z">
+<meta property="og:image" content="http://example.com/img/202212020201.jpg">
+<meta property="og:image" content="http://example.com/img/202212020202.jpg">
+<meta property="og:image" content="http://example.com/img/202212020203.jpg">
+<meta property="og:image" content="http://example.com/img/202212020204.jpg">
+<meta property="article:published_time" content="2022-12-02T02:04:45.000Z">
+<meta property="article:modified_time" content="2022-12-02T15:36:20.682Z">
 <meta property="article:author" content="Oceanfan">
-<meta property="article:tag" content="DB MySQL 05中文问题 三层因素">
+<meta property="article:tag" content="信息检索 倒排索引 原理+例子">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/img/utf8.jpg">
+<meta name="twitter:image" content="http://example.com/img/202212020201.jpg">
   
     <link rel="alternative" href="/atom.xml" title="ocean小站" type="application/atom+xml">
   
@@ -183,7 +186,7 @@
   <span class="post-meta-item-icon">
   <i class="fa fa-keyboard-o" aria-hidden="true"></i>
   <span class="post-meta-item-text"> 字数统计: </span>
-  <span class="post-count">804字</span>
+  <span class="post-count">1.5k字</span>
   </span>
   </span>
   
@@ -192,7 +195,7 @@
   <span class="post-meta-item-icon">
   <i class="fa fa-clock-o" aria-hidden="true"></i>
   <span class="post-meta-item-text"> 阅读时长: </span>
-  <span class="post-count">3分</span>
+  <span class="post-count">5分</span>
   </span>
   </span>e
   </div>
@@ -200,30 +203,151 @@
   
   
 <!-- 添加完成 -->
-<article id="post-数据库-2022111511" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-信息检索_倒排索引-2022120202" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      数据库_2022111511
+      信息检索_2022120202
     </h1>
   
 
         
         
-<a href="/2022/11/15/%E6%95%B0%E6%8D%AE%E5%BA%93-2022111511/" class="archive-article-date">
-  	<time datetime="2022-11-15T01:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-15</time>
+<a href="/2022/12/02/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2_%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95-2022120202/" class="archive-article-date">
+  	<time datetime="2022-12-02T02:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Welcome-to-database11"><a href="#Welcome-to-database11" class="headerlink" title="Welcome to database11"></a>Welcome to database11</h3><h1 id="数据库知识11"><a href="#数据库知识11" class="headerlink" title="数据库知识11"></a>数据库知识11</h1><h2 id="数据库-mysql中文问题-三层因素"><a href="#数据库-mysql中文问题-三层因素" class="headerlink" title="数据库 mysql中文问题 三层因素"></a>数据库 mysql中文问题 三层因素</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mysql中文问题 三层因素</span><br><span class="line"></span><br><span class="line">1 因素: msyql自身的设计 (6处中文)</span><br><span class="line"></span><br><span class="line">实验1:</span><br><span class="line">			mysql&gt; </span><br><span class="line">			mysql&gt; show variables like &#x27;character%&#x27;;</span><br><span class="line">			+--------------------------+----------------------------+</span><br><span class="line">			| Variable_name            | Value                      |</span><br><span class="line">			+--------------------------+----------------------------+</span><br><span class="line">			| character_set_client     | utf8                       |</span><br><span class="line">			| character_set_connection | utf8                       |</span><br><span class="line">			| character_set_database   | utf8                       |</span><br><span class="line">			| character_set_filesystem | binary                     |</span><br><span class="line">			| character_set_results    | utf8                       |</span><br><span class="line">			| character_set_server     | latin1                     |</span><br><span class="line">			| character_set_system     | utf8                       |</span><br><span class="line">			| character_sets_dir       | /usr/share/mysql/charsets/ |</span><br><span class="line">			+--------------------------+----------------------------+</span><br><span class="line">			8 rows in set (0.00 sec)</span><br><span class="line">			</span><br><span class="line">			******和程序员相关的是（1,2,5） results返回结果gbk，与发送utf8不一致，不能显示中文******</span><br></pre></td></tr></table></figure>
-<p><img src="/img/utf8.jpg"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">实验2</span><br><span class="line">]$ mysql -uroot -p123456 --default_character_set=gbk  </span><br><span class="line">			</span><br><span class="line">			mysql&gt; show variables like &#x27;character%&#x27;;</span><br><span class="line">			+--------------------------+----------------------------+</span><br><span class="line">			| Variable_name            | Value                      |</span><br><span class="line">			+--------------------------+----------------------------+</span><br><span class="line">			| character_set_client     | gbk                        |</span><br><span class="line">			| character_set_connection | gbk                        |</span><br><span class="line">			| character_set_database   | latin1                     |</span><br><span class="line">			| character_set_filesystem | binary                     |</span><br><span class="line">			| character_set_results    | gbk                        |</span><br><span class="line">			| character_set_server     | latin1                     |</span><br><span class="line">			| character_set_system     | utf8                       |</span><br><span class="line">			| character_sets_dir       | /usr/share/mysql/charsets/ |</span><br><span class="line">			+--------------------------+----------------------------+</span><br><span class="line">			8 rows in set (0.00 sec)</span><br><span class="line">====&gt; 影响了 3处 (最外层----client,connection, results)</span><br><span class="line"></span><br><span class="line">			mysql&gt; select * from employee;</span><br><span class="line">			+------+------+------+------------+--------+------------+----------+</span><br><span class="line">			| id   | name | sex  | birthday   | salary | entry_date | resume   |</span><br><span class="line">			+------+------+------+------------+--------+------------+----------+</span><br><span class="line">			|    1 |  |     | 1983-09-21 |  15000 | 2012-06-24 | ?? |</span><br><span class="line">			|    2 |  |     | 1984-09-21 |  10000 | 2012-07-24 | ?? |</span><br><span class="line">			|    3 |  |      | 1985-09-21 |   7000 | 2012-08-24 | ?? |</span><br><span class="line">			+------+------+------+------------+--------+------------+----------+</span><br><span class="line">			3 rows in set (0.02 sec)</span><br><span class="line"></span><br><span class="line">为什么会出现乱码?--------&gt;&gt;&gt;&gt;&gt;&gt; 存储是utf8， 返回是gbk</span><br><span class="line"></span><br><span class="line">insert into employee(id,name,sex,birthday,salary,entry_date,resume) values(10,&#x27;张三10&#x27;,1,&#x27;1983-09-21&#x27;,15000,&#x27;2012-06-24&#x27;,&#x27;一个老牛&#x27;);</span><br><span class="line"></span><br><span class="line">实验3 在这个环境下 插入中文</span><br><span class="line">mysql&gt; </span><br><span class="line">mysql&gt; insert into employee(id,name,sex,birthday,salary,entry_date,resume) values(10,&#x27;张三10&#x27;,1,&#x27;1983-09-21&#x27;,15000,&#x27;2012-06-24&#x27;,&#x27;一个老牛&#x27;);</span><br><span class="line"></span><br><span class="line">ERROR 1366 (HY000): Incorrect string value: &#x27;\x80\xE4\xB8\xAA\xE8\x80...&#x27; for column &#x27;resume&#x27; at row 1</span><br><span class="line">mysql&gt; </span><br><span class="line">mysql&gt; </span><br><span class="line"></span><br><span class="line">2层因素: 操作系统的语言集的原因</span><br><span class="line">		linux操作系统 是一个 多用户的操作</span><br><span class="line">				[root@localhost ~]# cat /etc/sysconfig/i18n</span><br><span class="line">				LANG=&quot;zh_CN.UTF-8&quot;	</span><br><span class="line">						操作系统的菜单按照zh_CN显示,  文件存储按照utf8</span><br><span class="line">				[root@localhost ~]# </span><br><span class="line"></span><br><span class="line">		linux操作系统语言环境 和 用户的配置的语言环境LANG 相互影响</span><br><span class="line">				[mysql01@localhost ~]$ echo $LANG</span><br><span class="line">				zh_CN.UTF-8</span><br><span class="line">				[mysql01@localhost ~]$ </span><br><span class="line">				</span><br><span class="line">实验4 修改用户的LANG,去屏蔽了操作系统的LANG设置</span><br><span class="line">			Database changed</span><br><span class="line">			mysql&gt; select * from employee;</span><br><span class="line">			+------+------+------+------------+--------+------------+--------+</span><br><span class="line">			| id   | name | sex  | birthday   | salary | entry_date | resume |</span><br><span class="line">			+------+------+------+------------+--------+------------+--------+</span><br><span class="line">			|    1 | ??   |     | 1983-09-21 |  15000 | 2012-06-24 | ????   |</span><br><span class="line">			|    2 | ??   |     | 1984-09-21 |  10000 | 2012-07-24 | ????   |</span><br><span class="line">			|    3 | ??   |      | 1985-09-21 |   7000 | 2012-08-24 | ????   |</span><br><span class="line">			+------+------+------+------------+--------+------------+--------+</span><br><span class="line">			3 rows in set (0.00 sec)	</span><br><span class="line">		</span><br><span class="line">			8 rows in set (0.00 sec)</span><br><span class="line">======&gt; 用户的LANG设置,影响了 我们的应用程序的语言环境,导致 myql环境成了	</span><br><span class="line"></span><br><span class="line">						mysql&gt; show variables like &#x27;character%&#x27;;</span><br><span class="line">			+--------------------------+----------------------------+</span><br><span class="line">			| Variable_name            | Value                      |</span><br><span class="line">			+--------------------------+----------------------------+</span><br><span class="line">			| character_set_client     | latin1                     |</span><br><span class="line">			| character_set_connection | latin1                     |</span><br><span class="line">			| character_set_database   | latin1                     |</span><br><span class="line">			| character_set_filesystem | binary                     |</span><br><span class="line">			| character_set_results    | latin1                     |</span><br><span class="line">			| character_set_server     | latin1                     |</span><br><span class="line">			| character_set_system     | utf8                       |</span><br><span class="line">			| character_sets_dir       | /usr/share/mysql/charsets/ |	</span><br><span class="line">			</span><br><span class="line">			检索中文,乱码 (database 中存储是utf8, 而我们显示要latin1)		</span><br><span class="line">								</span><br><span class="line">		</span><br><span class="line">实验5:在这个环境之下,能不能把中文的数据,插入到数据库中</span><br><span class="line"></span><br><span class="line">insert into employee(id,name,sex,birthday,salary,entry_date,resume) values(10,&#x27;张三10&#x27;,1,&#x27;1983-09-21&#x27;,15000,&#x27;2012-06-24&#x27;,&#x27;一个老牛&#x27;);</span><br><span class="line"></span><br><span class="line">能插入数据,但是再显示的时候,有中文（不能显示中文) </span><br><span class="line">=====&gt;&gt;&gt;&gt;&gt;&gt;&gt; 很恐怖，能运行，结果不正确；</span><br><span class="line">（上线的系统，绝对是单用户的====&gt;&gt;&gt;&gt;&gt;程序部署到单独的用户之下，这个用户的环境变量归你这个程序所有，不准让另外任何一个程序去接住你的程序）====&gt;&gt;&gt;&gt;&gt;&gt;血淋淋的教训；</span><br><span class="line"></span><br><span class="line">=====&gt;环境是复杂</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3层因素: 文件存储格式 （扔的时候把gbk转成utf8，再扔给服务器）</span><br><span class="line">		编码： 936中文（windows下）</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h2 id="信息检索——简单易懂的倒排索引（原理-例子）"><a href="#信息检索——简单易懂的倒排索引（原理-例子）" class="headerlink" title="信息检索——简单易懂的倒排索引（原理+例子）"></a>信息检索——简单易懂的倒排索引（原理+例子）</h2><h2 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h2><h3 id="正向索引和反向索引"><a href="#正向索引和反向索引" class="headerlink" title="正向索引和反向索引"></a>正向索引和反向索引</h3><p>先介绍一下正向索引: 当用户发起查询时（假设查询为一个关键词），搜索引擎会扫描索引库中的所有文档，找出所有包含关键词的文档，这样依次从文档中去查找是否含有关键词的方法叫做正向索引。互联网上存在的网页（或称文档）不计其数，这样遍历的索引结构效率低下，无法满足用户需求。<br>正向索引结构如下:<br>文档1的ID→单词1的信息；单词2的信息；单词3的信息…<br>文档2的ID→单词3的信息；单词2的信息；单词4的信息…<br>…</p>
+<p><img src="/img/202212020201.jpg"></p>
+<p>为了增加效率，搜索引擎会把正向索引变为反向索引（倒排索引）即把“文档→单词”的形式变为“单词→文档”的形式。倒排索引具体机构如下:<br>单词1→文档1的ID；文档2的ID；文档3的ID…<br>单词2→文档1的ID；文档4的ID；文档7的ID…<br>…</p>
+<p><img src="/img/202212020202.jpg"></p>
+<h3 id="单词-文档矩阵"><a href="#单词-文档矩阵" class="headerlink" title="单词-文档矩阵"></a>单词-文档矩阵</h3><p>单词-文档矩阵是表达两者之间所具有的一种包含关系的概念模型。<br>现有以下几个文档:</p>
+<ul>
+<li>D1：乔布斯去了中国。</li>
+<li>D2：苹果今年仍能占据大多数触摸屏产能。</li>
+<li>D3：苹果公司首席执行官史蒂夫·乔布斯宣布，iPad2将于3月11日在美国上市。</li>
+<li>D4：乔布斯推动了世界，iPhone、iPad、iPad2，一款一款接连不断。</li>
+<li>D5：乔布斯吃了一个苹果。<br>此时用户查询为“苹果 And (乔布斯 Or iPad2)”，表示包含单词“苹果”，同时还包含“乔布斯”或“iPad2”的其中一个。</li>
+</ul>
+<p>则“单词-文档”矩阵为:</p>
+<p><img src="/img/202212020203.jpg"></p>
+<p>该矩阵可以从两个方向进行解读:</p>
+<p>纵向: 表示每个单独的文档包含了哪些单词，比如D1包含了“乔布斯这个词”，D4包含了“乔布斯”和“iPad2”。<br>横向: 表示哪些文档包含了该单词，比如D2、D3、D5包含了“苹果”这个词。<br>搜索引擎的索引其实就是实现“单词-文档”矩阵的具体数据结构。可以有不同的方式来实现上述概念模型，比如“倒排索引”、“签名文件”、“后缀树”等方式，但是“倒排索引”是实现单词到文档映射关系的最佳实现方式。</p>
+<h3 id="倒排索引-1"><a href="#倒排索引-1" class="headerlink" title="倒排索引"></a>倒排索引</h3><p>倒排索引(Inverted Index)：倒排索引是实现“单词-文档矩阵”的一种具体存储形式，通过倒排索引，可以根据单词快速获取包含这个单词的文档列表。倒排索引主要由两个部分组成：“单词词典”和“倒排文件”。</p>
+<p>单词词典(Lexicon)：搜索引擎的通常索引单位是单词，单词词典是由文档集合中出现过的所有单词构成的字符串集合，单词词典内每条索引项记载单词本身的一些信息以及指向“倒排列表”的指针。<br>倒排列表(PostingList)：倒排列表记载了出现过某个单词的所有文档的文档列表及单词在该文档中出现的位置信息，每条记录称为一个倒排项(Posting)。根据倒排列表，即可获知哪些文档包含某个单词。<br>倒排文件(Inverted File)：所有单词的倒排列表往往顺序地存储在磁盘的某个文件里，这个文件即被称之为倒排文件，倒排文件是存储倒排索引的物理文件。</p>
+<p><img src="/img/202212020204.jpg"></p>
+<h3 id="倒排索引简单实例"><a href="#倒排索引简单实例" class="headerlink" title="倒排索引简单实例"></a>倒排索引简单实例</h3><p>还是用上面提到的例子:</p>
+<ul>
+<li>Doc1：乔布斯去了中国。</li>
+<li>Doc2：苹果今年仍能占据大多数触摸屏产能。</li>
+<li>Doc3：苹果公司首席执行官史蒂夫·乔布斯宣布，iPad2将于3月11日在美国上市。</li>
+<li>Doc4：乔布斯推动了世界，iPhone、iPad、iPad2，一款一款接连不断。</li>
+<li>Doc5：乔布斯吃了一个苹果。<br>这五个文档中的数字代表文档的ID，比如”Doc1”中的“1”。</li>
+</ul>
+<p>通过这5个文档建立简单的倒排索引:</p>
+<table>
+<thead>
+<tr>
+<th>单词ID(WordID)</th>
+<th align="center">单词(Word)</th>
+<th align="left">倒排列表(DocID)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td align="center">乔布斯</td>
+<td align="left">1，3，4，5</td>
+</tr>
+<tr>
+<td>2</td>
+<td align="center">苹果</td>
+<td align="left">2，3，5</td>
+</tr>
+<tr>
+<td>3</td>
+<td align="center">iPad2</td>
+<td align="left">3，4</td>
+</tr>
+<tr>
+<td>4</td>
+<td align="center">宣布</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td>5</td>
+<td align="center">了</td>
+<td align="left">1，4，5</td>
+</tr>
+<tr>
+<td>…</td>
+<td align="center">…</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td>​ 首先要用分词系统将文档自动切分成单词序列，这样就让文档转换为由单词序列构成的数据流，并对每个不同的单词赋予唯一的单词编号(WordID)，并且每个单词都有对应的含有该单词的文档列表即倒排列表。如上表所示，第一列为单词ID，第二列为单词ID对应的单词，第三列为单词对应的倒排列表。如第一个单词ID“1”对应的单词为“乔布斯”，单词“乔布斯”的倒排列表为{1,3,4,5},即文档1、文档3、文档4、文档5都包含有单词“乔布斯”。</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>这上面的列表是最简单的倒排索引，下面介绍一种更加复杂，包含信息更多的倒排索引。</p>
+<table>
+<thead>
+<tr>
+<th>单词ID(WordID)</th>
+<th align="center">单词(Word)</th>
+<th align="left">倒排列表(DocID;TF;<Pos>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td align="center">乔布斯</td>
+<td align="left">(1;1;&lt;1&gt;),(3;1;&lt;6&gt;),(4;1;&lt;1&gt;),(5;1;&lt;1&gt;)</td>
+</tr>
+<tr>
+<td>2</td>
+<td align="center">苹果</td>
+<td align="left">(2;1;&lt;1&gt;),(3;1;&lt;1&gt;),(5;1;&lt;5&gt;)</td>
+</tr>
+<tr>
+<td>3</td>
+<td align="center">iPad2</td>
+<td align="left">(3;1;&lt;8&gt;),(4;1;&lt;7&gt;)</td>
+</tr>
+<tr>
+<td>4</td>
+<td align="center">宣布</td>
+<td align="left">(3;1;&lt;7&gt;)</td>
+</tr>
+<tr>
+<td>5</td>
+<td align="center">了</td>
+<td align="left">(1;1;&lt;3&gt;),(4;1;&lt;3&gt;)(5;1;&lt;3&gt;)</td>
+</tr>
+<tr>
+<td>…</td>
+<td align="center">…</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td>TF(term frequency): 单词在文档中出现的次数。</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>Pos: 单词在文档中出现的位置。</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>这个表格展示了更加复杂的倒排索引，前两列不变，第三列倒排索引包含的信息为(文档ID，单词频次，&lt;单词位置&gt;)，比如单词“乔布斯”对应的倒排索引里的第一项(1;1;&lt;1&gt;)意思是，文档1包含了“乔布斯”，并且在这个文档中只出现了1次，位置在第一个。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 <hr>
 
       
@@ -269,7 +393,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">DB MySQL 05中文问题 三层因素</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">信息检索 倒排索引 原理+例子</a>
         		</li>
       		
 		</ul>
@@ -325,7 +449,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/11/15/%E6%95%B0%E6%8D%AE%E5%BA%93-2022111511/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/12/02/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2_%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95-2022120202/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -339,18 +463,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/11/15/%E6%95%B0%E6%8D%AE%E5%BA%93-2022111509/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          数据库_2022111509
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/11/15/%E6%95%B0%E6%8D%AE%E5%BA%93-2022111510/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">数据库_2022111510</div>
+    <a href="/2022/12/02/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2-20221202/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">信息检索_20221202</div>
       <i class="icon-circle-right"></i>
     </a>
   
