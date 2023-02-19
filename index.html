@@ -64,7 +64,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 18
+			总文章数 20
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -181,6 +181,300 @@
   <span class="post-meta-item-icon">
   <i class="fa fa-keyboard-o" aria-hidden="true"></i>
   <span class="post-meta-item-text"> 字数统计: </span>
+  <span class="post-count">844字</span>
+  </span>
+  </span>
+  
+  <span class="post-time">
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+  <i class="fa fa-clock-o" aria-hidden="true"></i>
+  <span class="post-meta-item-text"> 阅读时长: </span>
+  <span class="post-count">3分</span>
+  </span>
+  </span>e
+  </div>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  
+<!-- 添加完成 -->
+<article id="post-微信小程序-代码的构成" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/01/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9E%84%E6%88%90/">小程序_20230219</a>
+    </h1>
+  
+
+        
+        
+<a href="/2023/01/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9E%84%E6%88%90/" class="archive-article-date">
+  	<time datetime="2023-01-19T11:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="小程序-代码构成"><a href="#小程序-代码构成" class="headerlink" title="小程序 代码构成"></a>小程序 代码构成</h2><h2 id="代码构成"><a href="#代码构成" class="headerlink" title="代码构成"></a>代码构成</h2><p>###sitemap.json配置文件<br>sitemap.json文件用来配置小程序页面是否允许微信索引</p>
+<p>###页面.json配置文件<br>对本页面的窗口外观进行配置，<em><strong>页面中的配置项会覆盖app.json中的window 相同的配置项</strong></em></p>
+<p>###新建小程序页面<br>app.json-&gt;pages中新增页面的存放路径，开发者工具会帮我们自动创建对应的页面。</p>
+<p>###项目首页<br>app.json-&gt;pages数组中页面路径的前后顺序，即可修改项目的首页。小程序会把排在第一位的页面当做首页进行渲染；</p>
+<p>###WXML<br>wxml(weixin markup language) 是小程序框架设计的一套标签语言， 用来构建小程序页面的结构，类似于HTML。</p>
+<p>###WXSS<br>wxss（weixin style sheets）是一套<strong>样式语言</strong>，用于描述WXML的组件样式，类似于网页开发中的CSS。</p>
+<ol>
+<li>新增rpx尺寸；</li>
+<li>提供了全局样式：app.wxss；       局部样式：页面的.WXSS仅对当前页面生效</li>
+<li>WXSS仅支持部分CSS选择器</li>
+</ol>
+<p>###JS逻辑交互<br>app.json-&gt;pages数组中页面路径的前后顺序，即可修改项目的首页。小程序会把排在第一位的页面当做首页进行渲染；</p>
+<ol>
+<li>app.js</li>
+</ol>
+<ul>
+<li>是<em>整个小程序项目的入口文件</em>，通过调用App()函数来启动整个小程序</li>
+</ul>
+<ol start="2">
+<li>页面的.js 文件</li>
+</ol>
+<ul>
+<li>是<em>页面的入口文件</em>，通过调用Page()函数来创建并运行页面</li>
+</ul>
+<ol start="3">
+<li>普通的.js 文件</li>
+</ol>
+<ul>
+<li>是<em>普通的功能模块文件</em>，用来封装公共的函数或属性供页面使用</li>
+</ul>
+<p>###宿主环境简介<br>宿主环境（host environment）指的是<strong>程序运行所必须的依赖环境</strong> 例如Android 和 ios<br><strong>手机微信是小程序的宿主环境</strong></p>
+<p>####小程序宿主环境包含的内容：</p>
+<ol>
+<li><p>通信模型<br>通信的主体：渲染层（wxml模板和wxss样式工作在渲染层）<br>js脚本工作在逻辑层<br>渲染层和逻辑层之间的通信：由微信客户端进行转发<br>逻辑层和第三方服务器之间的通信：由微信客户端进行转发</p>
+</li>
+<li><p>运行机制</p>
+</li>
+</ol>
+<ul>
+<li><p>启动过程：下载代码包-&gt;解析app.json全局配置文件-&gt;执行app.js小程序入口文件，<em><strong>调用App()创建小程序实例</strong></em>-&gt;渲染小程序首页-&gt;启动完成。</p>
+</li>
+<li><p>页面渲染过程： 加载解析页面的.json配置文件-&gt;加载页面的.wxml模板和.wxss样式-&gt;执行页面的.js文件，<em><strong>调用Page()创建页面实例</strong></em>-&gt;渲染完成</p>
+</li>
+</ul>
+<ol start="3">
+<li>组件<br>由宿主环境提供</li>
+</ol>
+<ul>
+<li>view  常用于实现页面的<strong>布局效果</strong><br>默认占满一行</li>
+<li>scroll-view 可滚动的视图区域， 常用来实现<strong>滚动列表效果</strong></li>
+<li>swiper 和 swiper-item  轮播图组件和轮播图item组件</li>
+<li>text 组件 类似于span标签，是一个行内元素</li>
+<li>rich-text 富文本组件 支持把HTML字符串渲染为WXML结构</li>
+</ul>
+<ol start="4">
+<li>API</li>
+</ol>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><table>
+<thead>
+<tr>
+<th>级别</th>
+<th align="center">规模大小</th>
+<th align="left">例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一级别</td>
+<td align="center">大规模</td>
+<td align="left">Web搜索(web search)</td>
+</tr>
+<tr>
+<td>第二级别</td>
+<td align="center">小规模</td>
+<td align="left">苹果的MacOS X操作系统中的Spotlight搜索</td>
+</tr>
+<tr>
+<td>第三级别</td>
+<td align="center">介于第一种大规模和第二种小规模之间</td>
+<td align="left">公司内部文档、专利库、生物医学文献的搜索</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">小程序 代码构成 BHorse</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/01/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9E%84%E6%88%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <!-- 开始添加字数统计-->
+
+  <div style="margin-top:10px;">
+  <span class="post-time">
+  <span class="post-meta-item-icon">
+  <i class="fa fa-keyboard-o" aria-hidden="true"></i>
+  <span class="post-meta-item-text"> 字数统计: </span>
+  <span class="post-count">569字</span>
+  </span>
+  </span>
+  
+  <span class="post-time">
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+  <i class="fa fa-clock-o" aria-hidden="true"></i>
+  <span class="post-meta-item-text"> 阅读时长: </span>
+  <span class="post-count">1分</span>
+  </span>
+  </span>e
+  </div>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  
+<!-- 添加完成 -->
+<article id="post-SDK与API-20221203" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/12/03/SDK%E4%B8%8EAPI-20221203/">SDK与API_20221203</a>
+    </h1>
+  
+
+        
+        
+<a href="/2022/12/03/SDK%E4%B8%8EAPI-20221203/" class="archive-article-date">
+  	<time datetime="2022-12-03T01:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在手机App的世界里,法规条文里所谓的“第三方应用或服务”是个看得见摸不着的存在。但事实上,不管是你每天收到的新闻推送,还是促销活动广告,甚至短信验证码,都有可能出自第三方之手。</p>
+<p>这些集成在App里的第三方工具包被称为SDK(Software Development Kit,软件开发工具包)。它们可以帮助App高效率、低成本地实现地图、支付、统计、社交、广告等一系列功能,那么，到底什么是SDK呢？</p>
+<p>##SDK的概念</p>
+<p>SDK即“软件开发工具包”，软件开发工具包一般都是一些软件工程师为特定的软件包、软件框架、硬件平台、操作系统等建立应用软件时的开发工具的集合。简单讲，就是通过第三方服务商实现产品功能的软件工具包。</p>
+<p>通常，SDK会由专业的公司提供专业的服务的集合，比如移动支付技术、语音识别技术、我们公司的一键登录技术。开发者不需要对产品的每一项功能进行开发，使用合适的SDK，可以花费较少的时间，实现产品的功能。</p>
+<p><img src="/img/20221203.jpg"></p>
+<p>##SDK与API的区别</p>
+<p>API也是可以调用第三方的程序，SDK也可以使用第三方的软件。这两者有什么区别吗？</p>
+<p>SDK相当于是一个开发者集成的环境，API则是数据接口，API是基于SDK之下的，可以在SDK的环境之下调用API数据。</p>
+<p>SDK包括了API的定义，API是定义了一种能力的属性，是一种接口的规范，并且，SDK也包含了API的能力和规范，还有一些其他的辅助功能，同是缺少一部分API的能力。</p>
+<p><img src="/img/2022120302.jpg"></p>
+<p>简单讲，API是前端调用后端数据的一个通道，就是我们俗说的接口，通过这个通道，可以访问到后端的数据，但是又无需调用源代码。</p>
+<p>SDK，工程师为辅助开发某类软件的相关文档、范例和工具的集合，使用SDK可以提高开发效率，更简单的接入某个功能。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SDK  API</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/12/03/SDK%E4%B8%8EAPI-20221203/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <!-- 开始添加字数统计-->
+
+  <div style="margin-top:10px;">
+  <span class="post-time">
+  <span class="post-meta-item-icon">
+  <i class="fa fa-keyboard-o" aria-hidden="true"></i>
+  <span class="post-meta-item-text"> 字数统计: </span>
   <span class="post-count">1.5k字</span>
   </span>
   </span>
@@ -285,12 +579,8 @@
 <td align="center">…</td>
 <td align="left">…</td>
 </tr>
-<tr>
-<td>​ 首先要用分词系统将文档自动切分成单词序列，这样就让文档转换为由单词序列构成的数据流，并对每个不同的单词赋予唯一的单词编号(WordID)，并且每个单词都有对应的含有该单词的文档列表即倒排列表。如上表所示，第一列为单词ID，第二列为单词ID对应的单词，第三列为单词对应的倒排列表。如第一个单词ID“1”对应的单词为“乔布斯”，单词“乔布斯”的倒排列表为{1,3,4,5},即文档1、文档3、文档4、文档5都包含有单词“乔布斯”。</td>
-<td align="center"></td>
-<td align="left"></td>
-</tr>
 </tbody></table>
+<p>​首先要用分词系统将文档自动切分成单词序列，这样就让文档转换为由单词序列构成的数据流，并对每个不同的单词赋予唯一的单词编号(WordID)，并且每个单词都有对应的含有该单词的文档列表即倒排列表。如上表所示，第一列为单词ID，第二列为单词ID对应的单词，第三列为单词对应的倒排列表。如第一个单词ID“1”对应的单词为“乔布斯”，单词“乔布斯”的倒排列表为{1,3,4,5},即文档1、文档3、文档4、文档5都包含有单词“乔布斯”。</p>
 <p>这上面的列表是最简单的倒排索引，下面介绍一种更加复杂，包含信息更多的倒排索引。</p>
 <table>
 <thead>
@@ -330,17 +620,8 @@
 <td align="center">…</td>
 <td align="left">…</td>
 </tr>
-<tr>
-<td>TF(term frequency): 单词在文档中出现的次数。</td>
-<td align="center"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td>Pos: 单词在文档中出现的位置。</td>
-<td align="center"></td>
-<td align="left"></td>
-</tr>
 </tbody></table>
+<p>TF(term frequency): 单词在文档中出现的次数。<br>Pos: 单词在文档中出现的位置。</p>
 <p>这个表格展示了更加复杂的倒排索引，前两列不变，第三列倒排索引包含的信息为(文档ID，单词频次，&lt;单词位置&gt;)，比如单词“乔布斯”对应的倒排索引里的第一项(1;1;&lt;1&gt;)意思是，文档1包含了“乔布斯”，并且在这个文档中只出现了1次，位置在第一个。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 <hr>
@@ -1124,206 +1405,6 @@
 
 
   
-    <!-- 开始添加字数统计-->
-
-  <div style="margin-top:10px;">
-  <span class="post-time">
-  <span class="post-meta-item-icon">
-  <i class="fa fa-keyboard-o" aria-hidden="true"></i>
-  <span class="post-meta-item-text"> 字数统计: </span>
-  <span class="post-count">1.2k字</span>
-  </span>
-  </span>
-  
-  <span class="post-time">
-  &nbsp; | &nbsp;
-  <span class="post-meta-item-icon">
-  <i class="fa fa-clock-o" aria-hidden="true"></i>
-  <span class="post-meta-item-text"> 阅读时长: </span>
-  <span class="post-count">6分</span>
-  </span>
-  </span>e
-  </div>
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  
-  
-<!-- 添加完成 -->
-<article id="post-数据库-2022111407" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/11/14/%E6%95%B0%E6%8D%AE%E5%BA%93-2022111407/">数据库_2022111407</a>
-    </h1>
-  
-
-        
-        
-<a href="/2022/11/14/%E6%95%B0%E6%8D%AE%E5%BA%93-2022111407/" class="archive-article-date">
-  	<time datetime="2022-11-14T01:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Welcome-to-database07"><a href="#Welcome-to-database07" class="headerlink" title="Welcome to database07"></a>Welcome to database07</h3><h1 id="数据库知识07"><a href="#数据库知识07" class="headerlink" title="数据库知识07"></a>数据库知识07</h1><h2 id="数据库-MySQL-基本操作01"><a href="#数据库-MySQL-基本操作01" class="headerlink" title="数据库 MySQL 基本操作01"></a>数据库 MySQL 基本操作01</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br></pre></td><td class="code"><pre><span class="line">linux 下登录MySQL：       sudo mysql</span><br><span class="line"></span><br><span class="line">1  mysql用户是虚拟的</span><br><span class="line">用root用户启动和关闭myql服务器</span><br><span class="line">			  PID TTY          TIME CMD</span><br><span class="line">			20095 ?        00:00:21 mysqld</span><br><span class="line">			[root@localhost home]# service mysql stop</span><br><span class="line">			Shutting down MySQL...[确定]</span><br><span class="line">			[root@localhost home]# ps -u mysql</span><br><span class="line">			  PID TTY          TIME CMD</span><br><span class="line">			[root@localhost home]# service mysql start</span><br><span class="line">			</span><br><span class="line">2 mysql01用户 去登录mysql数据库</span><br><span class="line">	 		mysql -uroot -p123456	</span><br><span class="line">	 		</span><br><span class="line">	mysql&gt; select sysdate from dual;</span><br><span class="line">	ERROR 1054 (42S22): Unknown column &#x27;sysdate&#x27; in &#x27;field list&#x27;</span><br><span class="line">	mysql&gt; 	</span><br><span class="line">				mysql&gt; select now() from dual;</span><br><span class="line">			+---------------------+</span><br><span class="line">			| now()               |</span><br><span class="line">			+---------------------+</span><br><span class="line">			| 2015-02-04 02:08:38 |</span><br><span class="line">			+---------------------+</span><br><span class="line">			1 row in set (0.03 sec)</span><br><span class="line">			</span><br><span class="line">			mysql&gt; 	 select now()</span><br><span class="line">3 通过mysql客户端，登录不上mysql服务器</span><br><span class="line">	用root把mysql的后台进程给kill -9 PID</span><br><span class="line">	</span><br><span class="line">4 基本操作</span><br><span class="line"></span><br><span class="line">	mysql&gt; show databases;	</span><br><span class="line">======》数据库的操作	</span><br><span class="line">	</span><br><span class="line">			mysql&gt; show create database mydb2; </span><br><span class="line">			+----------+----------------------------------------------------------------+</span><br><span class="line">			| Database | Create Database                                                |</span><br><span class="line">			+----------+----------------------------------------------------------------+</span><br><span class="line">			| mydb2    | CREATE DATABASE `mydb2` /*!40100 DEFAULT CHARACTER SET utf8 */ |</span><br><span class="line">			+----------+----------------------------------------------------------------+</span><br><span class="line">			1 row in set (0.00 sec)</span><br><span class="line">			</span><br><span class="line">			mysql&gt; show create database mydb1;</span><br><span class="line">			+----------+------------------------------------------------------------------+</span><br><span class="line">			| Database | Create Database                                                  |</span><br><span class="line">			+----------+------------------------------------------------------------------+</span><br><span class="line">			| mydb1    | CREATE DATABASE `mydb1` /*!40100 DEFAULT CHARACTER SET latin1 */ |</span><br><span class="line">			+----------+------------------------------------------------------------------+</span><br><span class="line">			1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">			====》注意 mysql默认语言集</span><br><span class="line">			mysql&gt; alter database mydb1 character set utf8;</span><br><span class="line"></span><br><span class="line">=======》表的操作	</span><br><span class="line">	create table t1(tid int, tname varchar(40)) ;	</span><br><span class="line">	</span><br><span class="line">			mysql&gt; create table t1(tid int, tname varchar(40));</span><br><span class="line">			ERROR 1046 (3D000): No database selected</span><br><span class="line">			mysql&gt; use mydb2;</span><br><span class="line">			Database changed</span><br><span class="line">			mysql&gt; 	</span><br><span class="line">						</span><br><span class="line">						</span><br><span class="line">	mysql&gt; desc t1;</span><br><span class="line">						+-------+-------------+------+-----+---------+-------+</span><br><span class="line">						| Field | Type        | Null | Key | Default | Extra |</span><br><span class="line">						+-------+-------------+------+-----+---------+-------+</span><br><span class="line">						| tid   | int(11)     | YES  |     | NULL    |       |</span><br><span class="line">						| tname | varchar(40) | YES  |     | NULL    |       |</span><br><span class="line">						+-------+-------------+------+-----+---------+-------+</span><br><span class="line">						2 rows in set (0.09 sec)	</span><br><span class="line">						</span><br><span class="line">	show create table t1 ; 	</span><br><span class="line">						--------------------+</span><br><span class="line">						| t1    | CREATE TABLE `t1` (</span><br><span class="line">						  `tid` int(11) DEFAULT NULL,</span><br><span class="line">						  `tname` varchar(40) DEFAULT NULL</span><br><span class="line">						) ENGINE=InnoDB DEFAULT CHARSET=utf8 |		</span><br><span class="line">			</span><br><span class="line">	mysql中的数据类型：	</span><br><span class="line"></span><br><span class="line">======&gt;数据的增删改查</span><br><span class="line"></span><br><span class="line">===&gt;插入中文实验</span><br><span class="line"></span><br><span class="line">			create table employee(</span><br><span class="line">			id int,</span><br><span class="line">			name varchar(20),</span><br><span class="line">			sex bit,</span><br><span class="line">			birthday date,</span><br><span class="line">			salary double,</span><br><span class="line">			entry_date date,</span><br><span class="line">			resume text</span><br><span class="line">			);		</span><br><span class="line">			</span><br><span class="line">			insert into employee(id,name,sex,birthday,salary,entry_date,resume) values(1,&#x27;张三&#x27;,1,&#x27;1983-09-21&#x27;,15000,&#x27;2012-06-24&#x27;,&#x27;一个大牛&#x27;);</span><br><span class="line">			insert into employee(id,name,sex,birthday,salary,entry_date,resume) values(2,&#x27;李四&#x27;,1,&#x27;1984-09-21&#x27;,10000,&#x27;2012-07-24&#x27;,&#x27;一个中牛&#x27;);</span><br><span class="line">			insert into employee(id,name,sex,birthday,salary,entry_date,resume) values(3,&#x27;王五&#x27;,0,&#x27;1985-09-21&#x27;,7000,&#x27;2012-08-24&#x27;,&#x27;一个小牛&#x27;);</span><br><span class="line">			</span><br><span class="line">			select id, name as &quot;名字&quot; ,  salary*12 年 薪</span><br><span class="line">			from employee</span><br><span class="line">			where id &gt;=2 ;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">=====&gt;分组实验</span><br><span class="line">			create table student(</span><br><span class="line">			id int,</span><br><span class="line">			name varchar(20),</span><br><span class="line">			chinese int,</span><br><span class="line">			english int,</span><br><span class="line">			math int</span><br><span class="line">			);</span><br><span class="line">			</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(1,&#x27;何东&#x27;,80,85,90);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(2,&#x27;权筝&#x27;,90,95,95);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(3,&#x27;何南&#x27;,80,96,96);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(4,&#x27;叶坦&#x27;,81,97,85);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(5,&#x27;何西&#x27;,85,84,90);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(6,&#x27;丁香&#x27;,92,85,87);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(7,&#x27;何北&#x27;,75,81,80);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(8,&#x27;唐娇&#x27;,77,80,79);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(9,&#x27;任知了&#x27;,95,85,85);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(10,&#x27;王越&#x27;,94,85,84);</span><br><span class="line">						 	</span><br><span class="line">						 	</span><br><span class="line">			select id, name, (chinese+english+math) 总分</span><br><span class="line">			from student; 	</span><br><span class="line">			</span><br><span class="line">			alter table student add column classid int ;</span><br><span class="line">			</span><br><span class="line">			update student set classid = 1</span><br><span class="line">			where id between 1 and 5 </span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			update student set classid = 2</span><br><span class="line">			where id between 6 and 10  </span><br><span class="line"></span><br><span class="line">====分组实验过程</span><br><span class="line">求各个班级 英语的平均分</span><br><span class="line"></span><br><span class="line">			select name, classid, avg(english) </span><br><span class="line">			from student</span><br><span class="line">			group by classid</span><br><span class="line">			</span><br><span class="line">			=====&gt;group by的设计理念</span><br><span class="line">			</span><br><span class="line">			10 rows in set (0.00 sec)</span><br><span class="line">			</span><br><span class="line">			mysql&gt; select classid, avg(english) </span><br><span class="line">			    -&gt; from student</span><br><span class="line">			    -&gt; group by classid;</span><br><span class="line">			+---------+--------------+</span><br><span class="line">			| classid | avg(english) |</span><br><span class="line">			+---------+--------------+</span><br><span class="line">			|       1 |      91.4000 |</span><br><span class="line">			|       2 |      83.2000 |</span><br><span class="line">			+---------+--------------+</span><br><span class="line">			2 rows in set (0.05 sec)</span><br><span class="line">			</span><br><span class="line">			mysql&gt; </span><br><span class="line">			mysql&gt; </span><br><span class="line">			mysql&gt; select name, classid, avg(english) </span><br><span class="line">			    -&gt; from student</span><br><span class="line">			    -&gt; group by classid;</span><br><span class="line">			+--------+---------+--------------+</span><br><span class="line">			| name   | classid | avg(english) |</span><br><span class="line">			+--------+---------+--------------+</span><br><span class="line">			| 何东   |       1 |      91.4000 |</span><br><span class="line">			| 丁香   |       2 |      83.2000 |</span><br><span class="line">			+--------+---------+--------------+</span><br><span class="line">			2 rows in set (0.00 sec)</span><br><span class="line">			</span><br><span class="line">===&gt; mysql中的分组,检查不严格 (与oracle不一样的地方) </span><br><span class="line"></span><br><span class="line">=====&gt;日期函数</span><br><span class="line">			select now() 当前now, year(now()) 年, month(now()) 月,  day(now()) 日 from dual; </span><br><span class="line">			+---------------------+------+------+------+</span><br><span class="line">			| 当前now             | 年   | 月   | 日   |</span><br><span class="line">			+---------------------+------+------+------+</span><br><span class="line">			| 2015-02-04 03:13:01 | 2015 |    2 |    4 |</span><br><span class="line">			+---------------------+------+------+------+</span><br><span class="line">			1 row in set (0.00 sec)</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">				</span><br><span class="line">			mysql&gt; select CURRENT_DATE ( ) , CURRENT_TIME (),  CURRENT_TIMESTAMP (  ) from dual; </span><br><span class="line">			+------------------+-----------------+------------------------+</span><br><span class="line">			| CURRENT_DATE ( ) | CURRENT_TIME () | CURRENT_TIMESTAMP (  ) |</span><br><span class="line">			+------------------+-----------------+------------------------+</span><br><span class="line">			| 2015-02-04       | 03:14:14        | 2015-02-04 03:14:14    |</span><br><span class="line">			+------------------+-----------------+------------------------+</span><br><span class="line">			1 row in set (0.00 sec)</span><br><span class="line">			</span><br><span class="line">	--昨天 今天 明天</span><br><span class="line">	</span><br><span class="line">	select now() -1 昨天, now() 今天, now() + 1 明天 from dual</span><br><span class="line">			mysql&gt; select now() -1 昨天, now() 今天, now() + 1 明天 from dual;</span><br><span class="line">			+----------------+---------------------+----------------+</span><br><span class="line">			| 昨天           | 今天                | 明天           |</span><br><span class="line">			+----------------+---------------------+----------------+</span><br><span class="line">			| 20150204031546 | 2015-02-04 03:15:47 | 20150204031548 |</span><br><span class="line">			+----------------+---------------------+----------------+</span><br><span class="line">			1 row in set (0.00 sec)</span><br><span class="line">	=====&gt; 时间的加减 和 oracle不一样</span><br><span class="line">	</span><br><span class="line">	select date_add(now(), INTERVAL -1 day)  昨天, now() 今天, date_add(now(), INTERVAL +1 day) 明天 from dual;</span><br><span class="line">				+---------------------+---------------------+---------------------+</span><br><span class="line">			| 昨天                | 今天                | 明天                |</span><br><span class="line">			+---------------------+---------------------+---------------------+</span><br><span class="line">			| 2015-02-03 03:18:39 | 2015-02-04 03:18:39 | 2015-02-05 03:18:39 |</span><br><span class="line">			+---------------------+---------------------+---------------------+</span><br><span class="line">			1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">=====&gt;字符串</span><br><span class="line">CONCAT (string2? [,... ])</span><br><span class="line"></span><br><span class="line">			select concat(&#x27;hello&#x27;, &#x27; world&#x27;, &#x27;aaaaaaaaa&#x27;, &#x27;ddddsssss&#x27;) from dual ;</span><br><span class="line">			mysql&gt; select concat(&#x27;hello&#x27;, &#x27; world&#x27;, &#x27;aaaaaaaaa&#x27;) from dual ;</span><br><span class="line">						+----------------------------------------+</span><br><span class="line">						| concat(&#x27;hello&#x27;, &#x27; world&#x27;, &#x27;aaaaaaaaa&#x27;) |</span><br><span class="line">						+----------------------------------------+</span><br><span class="line">						| hello worldaaaaaaaaa                   |</span><br><span class="line">						+----------------------------------------+</span><br><span class="line">						1 row in set (0.00 sec)</span><br><span class="line">			</span><br><span class="line">			mysql&gt; select &#x27;aaaa&#x27; || &#x27;bbbbb&#x27; from dual; </span><br><span class="line">						+-------------------+</span><br><span class="line">						| &#x27;aaaa&#x27; || &#x27;bbbbb&#x27; |</span><br><span class="line">						+-------------------+</span><br><span class="line">						|                 0 |</span><br><span class="line">						+-------------------+</span><br><span class="line">						1 row in set, 2 warnings (0.03 sec)</span><br><span class="line">						===||在mysql下不能使用</span><br><span class="line"></span><br><span class="line">mysql&gt; </span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			auto_increment</span><br><span class="line">			</span><br><span class="line">			create table t2(tid int primary key auto_increment, tname varchar(40) ) ;	</span><br><span class="line">			</span><br><span class="line">			insert into t2(tname) values(&#x27;aaaa&#x27;) ;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<hr>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DB MySQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/11/14/%E6%95%B0%E6%8D%AE%E5%BA%93-2022111407/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <!-- 开始添加字数统计-->
-
-  <div style="margin-top:10px;">
-  <span class="post-time">
-  <span class="post-meta-item-icon">
-  <i class="fa fa-keyboard-o" aria-hidden="true"></i>
-  <span class="post-meta-item-text"> 字数统计: </span>
-  <span class="post-count">2.3k字</span>
-  </span>
-  </span>
-  
-  <span class="post-time">
-  &nbsp; | &nbsp;
-  <span class="post-meta-item-icon">
-  <i class="fa fa-clock-o" aria-hidden="true"></i>
-  <span class="post-meta-item-text"> 阅读时长: </span>
-  <span class="post-count">10分</span>
-  </span>
-  </span>e
-  </div>
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  
-  
-<!-- 添加完成 -->
-<article id="post-数据库-2022111408" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/11/14/%E6%95%B0%E6%8D%AE%E5%BA%93-2022111408/">数据库_2022111408</a>
-    </h1>
-  
-
-        
-        
-<a href="/2022/11/14/%E6%95%B0%E6%8D%AE%E5%BA%93-2022111408/" class="archive-article-date">
-  	<time datetime="2022-11-14T01:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Welcome-to-database08"><a href="#Welcome-to-database08" class="headerlink" title="Welcome to database08"></a>Welcome to database08</h3><h1 id="数据库知识08"><a href="#数据库知识08" class="headerlink" title="数据库知识08"></a>数据库知识08</h1><h2 id="数据库-MySQL-基本操作02"><a href="#数据库-MySQL-基本操作02" class="headerlink" title="数据库 MySQL 基本操作02"></a>数据库 MySQL 基本操作02</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br></pre></td><td class="code"><pre><span class="line">连接MYSQL服务器：mysql -uroot -proot</span><br><span class="line"></span><br><span class="line">	mysql -uroot -p --default_character_set=gbk; (影响数据的输入和输出)</span><br><span class="line">	show variables like &#x27;character%&#x27;;</span><br><span class="line"></span><br><span class="line">数据库的操作：创建，查看，修改，删除</span><br><span class="line">	*创建：</span><br><span class="line">		创建一个名称为mydb1的数据库。</span><br><span class="line">			create database mydb1;</span><br><span class="line">		创建一个使用utf-8字符集的mydb2数据库。</span><br><span class="line">			create database mydb2 character set utf8;</span><br><span class="line">		创建一个使用utf-8字符集，并带校对规则的mydb3数据库。</span><br><span class="line">			create database mydb3 character set utf8 collate utf8_general_ci;</span><br><span class="line">	*查看:</span><br><span class="line">		显示所有数据库</span><br><span class="line">			show databases;</span><br><span class="line">		显示创建数据库的语句信息</span><br><span class="line">			show create database mydb2;</span><br><span class="line">	*修改:</span><br><span class="line">		修改mydb1的字符集为gbk(不能修改数据库名)</span><br><span class="line">			alter database mydb1 character set utf8;	</span><br><span class="line">	*删除:</span><br><span class="line">		删除数据库mydb2</span><br><span class="line">			drop database mydb1;</span><br><span class="line">msql服务启动不起来问题排查</span><br><span class="line">	用root用户操作(启动和关闭mysql服务)</span><br><span class="line"></span><br><span class="line">表的操作：创建，查看，修改，删除</span><br><span class="line"></span><br><span class="line">	create table t1 (id int, name varchar(20))  --用例子引创建表</span><br><span class="line">	*创建：</span><br><span class="line">		根据实体类Person创建表person</span><br><span class="line">			Person &#123;</span><br><span class="line">				int id;</span><br><span class="line">				String name;</span><br><span class="line">			&#125;</span><br><span class="line">			create table person(</span><br><span class="line">				id int,</span><br><span class="line">				name varchar(20)</span><br><span class="line">			);</span><br><span class="line">		mysql中的数据类型：</span><br><span class="line">			bit 1位　但可以指定位数，如：bit(3)</span><br><span class="line">			int 2字节 可以指定最大位数，如：int&lt;4&gt;　最大为4位的整数</span><br><span class="line">			float 2个字节　可以指定最大的位数和最大的小数位数，如：float&lt;5,2&gt; 最大为一个5位的数，小数位最多2位 </span><br><span class="line">			double　4个字节　可以指定最大的位数和最大的小数位数，如：float&lt;6,4&gt; 最大为一个6位的数，小数位最多4位</span><br><span class="line">			char　必须指定字符数,如char(5) 为不可变字符　即使存储的内容为&#x27;ab&#x27;,也是用5个字符的空间存储这个数据</span><br><span class="line">			varchar　必须指定字符数,如varchar(5) 为可变字符　如果存储的内容为&#x27;ab&#x27;,占用2个字符的空间；如果为&#x27;abc&#x27;,则占用3个字符的空间</span><br><span class="line">			text: 大文本(大字符串)</span><br><span class="line">			blob：二进制大数据　如图片，音频文件，视频文件</span><br><span class="line">			date: 日期　如：&#x27;1921-01-02&#x27;</span><br><span class="line">			datetime: 日期时间　如：&#x27;1921-01-02 12:23:43&#x27;</span><br><span class="line">			timeStamp: 时间戳，自动赋值为当前日期时间</span><br><span class="line">			</span><br><span class="line">		创建一个员工表</span><br><span class="line">	*查看：</span><br><span class="line">		查看所有的表：</span><br><span class="line">			show tables;</span><br><span class="line">		查看指定表的创建语句</span><br><span class="line">			show create table employee;</span><br><span class="line">			mysql表 名称区分大小写</span><br><span class="line">		显示指定表的结构：</span><br><span class="line">			desc employee;</span><br><span class="line">	*删除：</span><br><span class="line">		删除employee表</span><br><span class="line">		drop table employee;</span><br><span class="line">	*修改表：</span><br><span class="line">		增加一个字段：alter table worker add column height double;</span><br><span class="line">		修改一个字段：alter table worker modify column height float;</span><br><span class="line">		删除一个字段：alter table worker drop column height;</span><br><span class="line">		更改表名：rename table employee to worker;</span><br><span class="line">		修改表的字符集:alter table worker character set gbk;</span><br><span class="line">	</span><br><span class="line">表数据的CRUD</span><br><span class="line"></span><br><span class="line">	*C(create增加数据) Insert语句 </span><br><span class="line">	创建一个员工表，新建Employee表并表中添加一些记录</span><br><span class="line">			create table employee(</span><br><span class="line">				id int,</span><br><span class="line">				name varchar(20),</span><br><span class="line">				sex bit,</span><br><span class="line">				birthday date,</span><br><span class="line">				salary double,</span><br><span class="line">				entry_date date,</span><br><span class="line">				resume text</span><br><span class="line">			);</span><br><span class="line">			insert into employee(id,name,sex,birthday,salary,entry_date,resume) values(1,&#x27;张三&#x27;,1,&#x27;1983-09-21&#x27;,15000,&#x27;2012-06-24&#x27;,&#x27;一个大牛&#x27;);</span><br><span class="line">			insert into employee(id,name,sex,birthday,salary,entry_date,resume) values(2,&#x27;李四&#x27;,1,&#x27;1984-09-21&#x27;,10000,&#x27;2012-07-24&#x27;,&#x27;一个中牛&#x27;);</span><br><span class="line">			insert into employee(id,name,sex,birthday,salary,entry_date,resume) values(3,&#x27;王五&#x27;,0,&#x27;1985-09-21&#x27;,7000,&#x27;2012-08-24&#x27;,&#x27;一个小牛&#x27;);</span><br><span class="line"></span><br><span class="line">	*U(update更新数据) Update语句 </span><br><span class="line">		将所有员工薪水都增加500元。</span><br><span class="line">			update employee set salary=salary+500;</span><br><span class="line">		将王五的员工薪水修改为10000元，resume改为也是一个中牛</span><br><span class="line">			update employee set salary=10000, resume=&#x27;也是一个中牛&#x27; where name=&#x27;王五&#x27;;</span><br><span class="line">	*D(drop删除数据) Delete语句 </span><br><span class="line">		删除表中姓名为王五的记录。</span><br><span class="line">			delete from employee where name=&#x27;王五&#x27;;</span><br><span class="line">		删除表中所有记录。</span><br><span class="line">			delete from employee; --可以有条件，但删除所有记录差了一点</span><br><span class="line">		使用truncate删除表中记录。</span><br><span class="line">			truncate employee;--无条件 效率高</span><br><span class="line">	</span><br><span class="line">	*R(Retrieve查找数据) Select语句	</span><br><span class="line">		准备环境：</span><br><span class="line"></span><br><span class="line">综合案例：创建一个学生表，插入数据</span><br><span class="line">			create table student(</span><br><span class="line">			id int,</span><br><span class="line">			name varchar(20),</span><br><span class="line">			chinese int,</span><br><span class="line">			english int,</span><br><span class="line">			math int</span><br><span class="line">			);</span><br><span class="line"></span><br><span class="line">			insert into student(id,name,chinese,english,math) values(1,&#x27;何东&#x27;,80,85,90);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(2,&#x27;权筝&#x27;,90,95,95);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(3,&#x27;何南&#x27;,80,96,96);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(4,&#x27;叶坦&#x27;,81,97,85);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(5,&#x27;何西&#x27;,85,84,90);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(6,&#x27;丁香&#x27;,92,85,87);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(7,&#x27;何北&#x27;,75,81,80);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(8,&#x27;唐娇&#x27;,77,80,79);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(9,&#x27;任知了&#x27;,95,85,85);</span><br><span class="line">			insert into student(id,name,chinese,english,math) values(10,&#x27;王越&#x27;,94,85,84);</span><br><span class="line"></span><br><span class="line">		查询表中所有学生的信息。</span><br><span class="line">			select * from student;</span><br><span class="line">		查询表中所有学生的姓名和对应的英语成绩。</span><br><span class="line">			select name,english from student;</span><br><span class="line">		过滤表中重复数据。</span><br><span class="line">			select english from student;</span><br><span class="line">			select DISTINCT english from student;</span><br><span class="line">			select DISTINCT english,name from student;</span><br><span class="line"></span><br><span class="line">			select english+chinese+math from student;</span><br><span class="line">			select english+chinese+math as 总分 from student;</span><br><span class="line">			select name,english+chinese+math as 总分 from student;</span><br><span class="line"></span><br><span class="line">		在所有学生英语分数上加10分特长分。</span><br><span class="line">			select name,english+10 from student;</span><br><span class="line">		统计每个学生的总分。</span><br><span class="line">			select english+chinese+math from student;</span><br><span class="line">		使用别名表示学生分数</span><br><span class="line">			select name,english+chinese+math as 总分 from student;</span><br><span class="line">			select name,english+chinese+math 总分 from student;</span><br><span class="line"></span><br><span class="line">		查询姓名为何东的学生成绩</span><br><span class="line">			select * from student where name=&#x27;何东&#x27;;</span><br><span class="line">		查询英语成绩大于90分的同学</span><br><span class="line">			select * from student where english&gt;90;</span><br><span class="line">		查询总分大于250分的所有同学</span><br><span class="line">			select * from student where english+chinese+math&gt;250;</span><br><span class="line"></span><br><span class="line">		查询英语分数在 85－95之间的同学。</span><br><span class="line">			select * from student where english&gt;=85 and english&lt;=95;</span><br><span class="line">			select * from student where english between 85 and 95;</span><br><span class="line">		查询数学分数为84,90,91的同学。</span><br><span class="line">			select * from student where math=84 or math=90 or math=91;</span><br><span class="line">			select * from student where math in(84,90,91);</span><br><span class="line">		查询所有姓何的学生成绩。</span><br><span class="line">			select * from student where name like &#x27;何%&#x27;;</span><br><span class="line">		查询数学分&gt;85，语文分&gt;90的同学。</span><br><span class="line">			select * from student where math&gt;85 and chinese&gt;90;</span><br><span class="line"></span><br><span class="line">		对数学成绩排序后输出。</span><br><span class="line">			select * from student order by math;</span><br><span class="line">		对总分排序后输出，然后再按从高到低的顺序输出</span><br><span class="line">			select * from student order by math+chinese+english desc;</span><br><span class="line">		对姓何的学生成绩排序输出</span><br><span class="line">			select * from student where name like &#x27;何%&#x27; order by math+chinese+english desc;</span><br><span class="line">			select name, math+chinese+english from student where name like &#x27;何%&#x27; order by math+chinese+english desc;</span><br><span class="line"></span><br><span class="line">		统计一个班级共有多少学生？</span><br><span class="line">			select count(*) from student;</span><br><span class="line">		统计数学成绩大于90的学生有多少个？</span><br><span class="line">			select count(*) from student where math&gt;90;</span><br><span class="line">		统计总分大于250的人数有多少？</span><br><span class="line">			select count(*) from student where math+chinese+english&gt;250;</span><br><span class="line"></span><br><span class="line">		统计一个班级数学总成绩？</span><br><span class="line">			select sum(math) from student;</span><br><span class="line">		统计一个班级语文、英语、数学各科的总成绩</span><br><span class="line">			select sum(math), sum(chinese), sum(english) from student;</span><br><span class="line">		统计一个班级语文、英语、数学的成绩总和</span><br><span class="line">			select sum(math+chinese+english)from student;</span><br><span class="line">			select sum(math)+sum(chinese)+sum(english) from student;</span><br><span class="line"></span><br><span class="line">		求一个班级数学平均分？</span><br><span class="line">			select avg(math) from student;</span><br><span class="line">		求一个班级总分平均分</span><br><span class="line">			select avg(math+chinese+english)from student;</span><br><span class="line">			select avg(math)+avg(chinese)+avg(english) from student;</span><br><span class="line"></span><br><span class="line">		求班级最高分和最低分</span><br><span class="line">			select max(math+chinese+english),min(math+chinese+english) from student;</span><br><span class="line">	</span><br><span class="line">		综合性练习：为学生表，增加一个班级列，然后训练分组查询</span><br><span class="line">		查出各个班的总分，最高分</span><br><span class="line">			准备环境</span><br><span class="line">				给表添加一个字段：alter table student add column class_id int;</span><br><span class="line">				更新表：</span><br><span class="line">					update student set class_id=1 where id&lt;=5;</span><br><span class="line">					update student set class_id=2 where id&gt;5;</span><br><span class="line">			select sum(math+chinese+english),max(math+chinese+english) from student group by class_id;</span><br><span class="line"></span><br><span class="line">		查询出班级总分大于1300分的班级ID</span><br><span class="line">			select class_id from student group by class_id having sum(math+chinese+english)&gt;1300;</span><br><span class="line"></span><br><span class="line">			select class_id from student where sum(math+chinese+english)&gt;1300 group by class_id ;</span><br><span class="line">			****ERROR 1111 (HY000): Invalid use of group function****</span><br><span class="line"></span><br><span class="line">			note:where和group区别: 在wehre子句中不能使用分组函数</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">时间和日期</span><br><span class="line">		mysql&gt; select year (now()), month(now()), day(now()) , date(now());</span><br><span class="line">		+--------------+--------------+------------+-------------+</span><br><span class="line">		| year (now()) | month(now()) | day(now()) | date(now()) |</span><br><span class="line">		+--------------+--------------+------------+-------------+</span><br><span class="line">		|         2014 |            9 |          7 | 2014-09-07  |</span><br><span class="line">		+--------------+--------------+------------+-------------+</span><br><span class="line">	</span><br><span class="line">		select date_add(now(), INTERVAL 2 year) from dual;／／增加两年</span><br><span class="line">		select charset(&#x27;name&#x27;)  employee;</span><br><span class="line">		select date_add(now(), INTERVAL -1 day) 昨天, now() 今天, date_add(now(), INTERVAL +1 day) 明天; </span><br><span class="line"></span><br><span class="line">字符串相关函数</span><br><span class="line">	select concat( charset(&#x27;name&#x27;), &#x27;aaaa&#x27;) 自定义 from dual;</span><br><span class="line"></span><br><span class="line">--日期转字符串 </span><br><span class="line">	select date_format(now(), &#x27;%Y-%m-%d&#x27;) from dual; </span><br><span class="line">	select date_format(now(), &#x27;%Y-%c-%d %h:%i:%s&#x27;) from dual; </span><br><span class="line"></span><br><span class="line">	--字符串 转 成 日期</span><br><span class="line">	select str_to_date(&#x27;2015-2-04 05:14:15&#x27; , &#x27;%Y-%c-%d %h:%i:%s&#x27;) from dual;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">表的约束　　</span><br><span class="line">	*定义主键约束　primary key:不允许为空，不允许重复</span><br><span class="line">	*定义主键自动增长　auto_increment</span><br><span class="line">	*定义唯一约束　unique</span><br><span class="line">	*定义非空约束　not null</span><br><span class="line">	*定义外键约束　constraint ordersid_FK foreign key(ordersid) references orders(id)</span><br><span class="line">	*删除主键：alter table tablename drop primary key ;</span><br><span class="line"></span><br><span class="line">	create table myclass</span><br><span class="line">	(</span><br><span class="line">		id INT(11) primary key auto_increment,</span><br><span class="line">		name varchar(20) unique</span><br><span class="line">	);</span><br><span class="line">	</span><br><span class="line">	create table student(</span><br><span class="line">		id INT(11) primary key auto_increment, </span><br><span class="line">		name varchar(20) unique,</span><br><span class="line">		passwd varchar(15) not null,</span><br><span class="line">		classid INT(11),  #注意这个地方不要少逗号</span><br><span class="line">		constraint stu_classid_FK  foreign key(classid) references myclass(id)</span><br><span class="line">	);</span><br><span class="line">	</span><br><span class="line">多表查询</span><br><span class="line">		1 创建多表查询案例</span><br><span class="line">		2 多表操作</span><br><span class="line">				等值连接</span><br><span class="line">				不等值连接	</span><br><span class="line">				外连接</span><br><span class="line">				自连接</span><br><span class="line">				</span><br><span class="line">				</span><br><span class="line">				</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<hr>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">DB MySQL02</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/11/14/%E6%95%B0%E6%8D%AE%E5%BA%93-2022111408/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1338,7 +1419,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 Oceanfan
+    		&copy; 2023 Oceanfan
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1494,6 +1575,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DB MySQL 04SQL99标准的连接查询</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SDK  API</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">小程序 代码构成 BHorse</a>
               </li>
             
             <div class="clearfix"></div>

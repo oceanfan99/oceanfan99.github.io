@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://example.com/img/202212020203.jpg">
 <meta property="og:image" content="http://example.com/img/202212020204.jpg">
 <meta property="article:published_time" content="2022-12-02T02:04:45.000Z">
-<meta property="article:modified_time" content="2022-12-02T15:36:20.682Z">
+<meta property="article:modified_time" content="2022-12-02T15:45:29.624Z">
 <meta property="article:author" content="Oceanfan">
 <meta property="article:tag" content="信息检索 倒排索引 原理+例子">
 <meta name="twitter:card" content="summary">
@@ -71,7 +71,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 18
+			总文章数 20
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -290,12 +290,8 @@
 <td align="center">…</td>
 <td align="left">…</td>
 </tr>
-<tr>
-<td>​ 首先要用分词系统将文档自动切分成单词序列，这样就让文档转换为由单词序列构成的数据流，并对每个不同的单词赋予唯一的单词编号(WordID)，并且每个单词都有对应的含有该单词的文档列表即倒排列表。如上表所示，第一列为单词ID，第二列为单词ID对应的单词，第三列为单词对应的倒排列表。如第一个单词ID“1”对应的单词为“乔布斯”，单词“乔布斯”的倒排列表为{1,3,4,5},即文档1、文档3、文档4、文档5都包含有单词“乔布斯”。</td>
-<td align="center"></td>
-<td align="left"></td>
-</tr>
 </tbody></table>
+<p>​首先要用分词系统将文档自动切分成单词序列，这样就让文档转换为由单词序列构成的数据流，并对每个不同的单词赋予唯一的单词编号(WordID)，并且每个单词都有对应的含有该单词的文档列表即倒排列表。如上表所示，第一列为单词ID，第二列为单词ID对应的单词，第三列为单词对应的倒排列表。如第一个单词ID“1”对应的单词为“乔布斯”，单词“乔布斯”的倒排列表为{1,3,4,5},即文档1、文档3、文档4、文档5都包含有单词“乔布斯”。</p>
 <p>这上面的列表是最简单的倒排索引，下面介绍一种更加复杂，包含信息更多的倒排索引。</p>
 <table>
 <thead>
@@ -335,17 +331,8 @@
 <td align="center">…</td>
 <td align="left">…</td>
 </tr>
-<tr>
-<td>TF(term frequency): 单词在文档中出现的次数。</td>
-<td align="center"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td>Pos: 单词在文档中出现的位置。</td>
-<td align="center"></td>
-<td align="left"></td>
-</tr>
 </tbody></table>
+<p>TF(term frequency): 单词在文档中出现的次数。<br>Pos: 单词在文档中出现的位置。</p>
 <p>这个表格展示了更加复杂的倒排索引，前两列不变，第三列倒排索引包含的信息为(文档ID，单词频次，&lt;单词位置&gt;)，比如单词“乔布斯”对应的倒排索引里的第一项(1;1;&lt;1&gt;)意思是，文档1包含了“乔布斯”，并且在这个文档中只出现了1次，位置在第一个。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 <hr>
@@ -463,6 +450,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2022/12/03/SDK%E4%B8%8EAPI-20221203/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SDK与API_20221203
+        
+      </div>
+    </a>
+  
   
     <a href="/2022/12/02/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2-20221202/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">信息检索_20221202</div>
@@ -508,7 +504,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 Oceanfan
+    		&copy; 2023 Oceanfan
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -664,6 +660,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DB MySQL 04SQL99标准的连接查询</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SDK  API</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">小程序 代码构成 BHorse</a>
               </li>
             
             <div class="clearfix"></div>
